@@ -1,0 +1,31 @@
+#best-movie-player{
+    height: 50px;
+    width:100px;
+    background:red;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-size: 1.3em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.prev, .next{
+    color:white;
+    font-weight:bold;
+    font-size:50px;
+    &:hover{
+        cursor:pointer;
+        transition:0.1s ease;
+        transform:scale(1.7);}
+    }
+
+.movie{
+    height:250px;
+    transition:0.5s ease;
+    padding-left:37px;
+    padding-right:37px;
+    &:hover{
+        cursor:auto;
+        transform:scale(1.05);}
+}

@@ -1,0 +1,124 @@
+/* Customized font */
+@font-face {
+  font-family: "abelregular";
+  src: url("fonts/abel-regular-webfont.eot");
+  src: url("fonts/abel-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/abel-regular-webfont.woff2") format("woff2"), url("fonts/abel-regular-webfont.woff") format("woff"), url("fonts/abel-regular-webfont.ttf") format("truetype"), url("fonts/abel-regular-webfont.svg#abelregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Bloc page */
+#bloc_page {
+  margin: auto;
+  width: 89%;
+}
+
+body {
+  color: white;
+  background: black;
+  font-family: "abelregular";
+}
+
+/* header */
+header {
+  height: 70px;
+  display: flex;
+  align-items: baseline;
+  background-color: #900C3F;
+  padding-bottom: 20px;
+}
+header h1 {
+  font-size: 2.2em;
+  padding-left: 20px;
+}
+
+/* nav */
+nav {
+  margin-left: 80px;
+}
+
+/* ul */
+ul {
+  font-size: 1.2em;
+  list-style-type: none;
+  display: flex;
+}
+ul li {
+  margin-right: 20px;
+}
+ul li a {
+  font-size: 1.5em;
+  color: white;
+  padding-right: 30px;
+  text-decoration: none;
+}
+ul li a:hover {
+  color: #c7c7c7;
+}
+
+/* section */
+section {
+  height: 300px;
+  margin-top: 20px;
+}
+section:nth-child(2) {
+  border: solid white;
+}
+section:nth-child(2) #best-movie h2, section:nth-child(2) #best-movie button {
+  position: relative;
+  left: 90px;
+  top: 140px;
+}
+section:nth-child(n+3) h3 {
+  text-align: center;
+  font-size: 1.7em;
+  padding-top: 5px;
+}
+
+/* carousel */
+.carousel {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#best-movie-player {
+  height: 50px;
+  width: 100px;
+  background: red;
+  border: 1px solid red;
+  border-radius: 10px;
+  font-size: 1.3em;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.prev, .next {
+  color: white;
+  font-weight: bold;
+  font-size: 50px;
+}
+.prev:hover, .next:hover {
+  cursor: pointer;
+  transition: 0.1s ease;
+  transform: scale(1.7);
+}
+
+.movie {
+  height: 250px;
+  transition: 0.5s ease;
+  padding-left: 37px;
+  padding-right: 37px;
+}
+.movie:hover {
+  cursor: auto;
+  transform: scale(1.05);
+}
+
+/*# sourceMappingURL=style.css.map */
