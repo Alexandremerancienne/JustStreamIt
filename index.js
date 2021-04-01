@@ -77,7 +77,7 @@ class Carousel{
         this.fourthMovie.src = this.printedPictures[0][3];
     }
 
-    moveR(){
+    moveRight(){
         this.position ++;
         if (this.position > this.printedPictures.length-1){this.position=0;}
         this.firstMovie.src = this.printedPictures[this.position][0];
@@ -86,7 +86,7 @@ class Carousel{
         this.fourthMovie.src = this.printedPictures[this.position][3];
     }
 
-    moveL(){
+    moveLeft(){
         this.position --;
         if (this.position < 0){this.position = this.printedPictures.length-1;}
         this.firstMovie.src = this.printedPictures[this.position][0];
