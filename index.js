@@ -1,11 +1,4 @@
-const moviesThirdCategory = document.querySelectorAll('#third-category img.movie');
-const firstMovie = moviesThirdCategory[0];
-const secondMovie = moviesThirdCategory[1];
-const thirdMovie = moviesThirdCategory[2];
-const fourthMovie = moviesThirdCategory[3];
-
-let pictures = ['https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg',
-'https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
+let picturesBestRatedMovies = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
 'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
 'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
 'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
@@ -13,32 +6,109 @@ let pictures = ['https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.j
 'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
 'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
 'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
-'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg']
+'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
+'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
 
-let repeatedPictures = pictures.concat(pictures,pictures,pictures);
+let picturesFirstCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
+'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
+'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
+'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
+'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
+'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
+'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
+'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
+'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
+'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
 
-var picturesToPrint = [];
-for (i=0;i<repeatedPictures.length/4;i++){picturesToPrint.push(repeatedPictures.slice(4*i,4*i+4))};
+let picturesSecondCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
+'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
+'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
+'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
+'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
+'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
+'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
+'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
+'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
+'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
 
-firstMovie.src = picturesToPrint[0][0];
-secondMovie.src = picturesToPrint[0][1];
-thirdMovie.src = picturesToPrint[0][2];
-fourthMovie.src = picturesToPrint[0][3];
+let picturesThirdCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
+'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
+'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
+'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
+'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
+'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
+'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
+'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
+'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
+'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
 
-let position = 0;
 
-function moveRight(){
-	position ++;
-	if (position > picturesToPrint.length-1){position=0;}
-    firstMovie.src = picturesToPrint[position][0];
-    secondMovie.src = picturesToPrint[position][1];
-    thirdMovie.src = picturesToPrint[position][2];
-    fourthMovie.src = picturesToPrint[position][3];}
+class Carousel{
+    constructor(category, pictures){
+        this.category = category;
+        this.pictures = pictures;
+        this.position = 0;
+        this.duplicatedPictures = [];
+        this.printedPictures = [];
+        this.movies = [];
+        this.firstMovie = new Image();
+        this.secondMovie = new Image();
+        this.thirdMovie = new Image();
+        this.fourthMovie = new Image();
+    }
 
-function moveLeft(){
-	position --;
-	if (position < 0){position = picturesToPrint.length-1;}
-    firstMovie.src = picturesToPrint[position][0];
-    secondMovie.src = picturesToPrint[position][1];
-    thirdMovie.src = picturesToPrint[position][2];
-    fourthMovie.src = picturesToPrint[position][3];}
+    fillPrintedPictures(){
+        this.duplicatedPictures = this.pictures.concat(this.pictures, this.pictures, this.pictures);
+        var i;
+        for (i=0;i<this.duplicatedPictures.length/4;i++){this.printedPictures.push(this.duplicatedPictures.slice(4*i,4*i+4))};
+    }
+
+    fillMoviesList(){
+        let movieCategory = this.category;
+        let categoryId = document.getElementById(movieCategory);
+        this.movies = categoryId.querySelectorAll('img.movie');
+        this.firstMovie = this.movies[0];
+        this.firstMovie.src = this.printedPictures[0][0];
+        this.secondMovie = this.movies[1];
+        this.secondMovie.src = this.printedPictures[0][1];
+        this.thirdMovie = this.movies[2];
+        this.thirdMovie.src = this.printedPictures[0][2];
+        this.fourthMovie = this.movies[3];
+        this.fourthMovie.src = this.printedPictures[0][3];
+    }
+
+    moveR(){
+        this.position ++;
+        if (this.position > this.printedPictures.length-1){this.position=0;}
+        this.firstMovie.src = this.printedPictures[this.position][0];
+        this.secondMovie.src = this.printedPictures[this.position][1];
+        this.thirdMovie.src = this.printedPictures[this.position][2];
+        this.fourthMovie.src = this.printedPictures[this.position][3];
+    }
+
+    moveL(){
+        this.position --;
+        if (this.position < 0){this.position = this.printedPictures.length-1;}
+        this.firstMovie.src = this.printedPictures[this.position][0];
+        this.secondMovie.src = this.printedPictures[this.position][1];
+        this.thirdMovie.src = this.printedPictures[this.position][2];
+        this.fourthMovie.src = this.printedPictures[this.position][3];
+    }
+}
+
+let carousel1 = new Carousel("best-rated-movies", picturesBestRatedMovies);
+carousel1.fillPrintedPictures();
+carousel1.fillMoviesList();
+
+let carousel2 = new Carousel("first-category", picturesFirstCategory);
+carousel2.fillPrintedPictures();
+carousel2.fillMoviesList();
+
+let carousel3 = new Carousel("second-category", picturesSecondCategory);
+carousel3.fillPrintedPictures();
+carousel3.fillMoviesList();
+
+let carousel4 = new Carousel("third-category", picturesThirdCategory);
+carousel4.fillPrintedPictures();
+carousel4.fillMoviesList();
+
