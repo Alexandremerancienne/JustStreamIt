@@ -73,6 +73,9 @@ section:nth-child(2) #best-movie h2, section:nth-child(2) #best-movie button {
   left: 90px;
   top: 140px;
 }
+section:nth-child(n+3) {
+  height: 350px;
+}
 section:nth-child(n+3) h3 {
   text-align: center;
   font-size: 1.7em;
