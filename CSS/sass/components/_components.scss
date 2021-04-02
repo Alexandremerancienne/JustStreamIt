@@ -13,19 +13,27 @@
 .prev, .next{
     color:white;
     font-weight:bold;
-    font-size:50px;
+    font-size:70px;
     &:hover{
         cursor:pointer;
         transition:0.1s ease;
-        transform:scale(1.7);}
+        transform:scale(1.8);}
+    }
+
+.prev{
+    padding-right:30px;
+    }
+
+.next{
+    padding-left:30px;
     }
 
 .movie{
-    height:250px;
+    height:270px;
     transition:0.5s ease;
-    padding-left:37px;
-    padding-right:37px;
+    padding-left:15px;
+    padding-right:15px;
     &:hover{
         cursor:auto;
-        transform:scale(1.05);}
+        transform:scale(1.12);}
 }

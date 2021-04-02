@@ -11,21 +11,28 @@
     font-style:normal;
 }
 
-/* Scroll behavior */
-html{
-    scroll-behavior:smooth;
-}
-
 /* Bloc page */
 #bloc_page{
-    margin:auto;
-    width:89%;
+    margin-left: auto;
+    margin-right: auto;
+    width:1240px;
 }
 
+/* Body */
 body{
     color:white;
     background:black;
     font-family:'abelregular';
 }
+
+/* Scroll behavior */
+html{
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+
+
+
 
 

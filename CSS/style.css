@@ -6,21 +6,24 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Bloc page */
 #bloc_page {
-  margin: auto;
-  width: 89%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1240px;
 }
 
+/* Body */
 body {
   color: white;
   background: black;
   font-family: "abelregular";
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* header */
@@ -62,10 +65,12 @@ ul li a:hover {
 
 /* section */
 section {
-  height: 300px;
+  height: 350px;
+  width: 100%;
   margin-top: 20px;
 }
 section:nth-child(2) {
+  height: 300px;
   border: solid white;
 }
 section:nth-child(2) #best-movie h2, section:nth-child(2) #best-movie button {
@@ -84,7 +89,7 @@ section:nth-child(n+3) h3 {
 
 /* carousel */
 .carousel {
-  height: 300px;
+  height: 270px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,23 +110,31 @@ section:nth-child(n+3) h3 {
 .prev, .next {
   color: white;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 70px;
 }
 .prev:hover, .next:hover {
   cursor: pointer;
   transition: 0.1s ease;
-  transform: scale(1.7);
+  transform: scale(1.8);
+}
+
+.prev {
+  padding-right: 30px;
+}
+
+.next {
+  padding-left: 30px;
 }
 
 .movie {
-  height: 250px;
+  height: 270px;
   transition: 0.5s ease;
-  padding-left: 37px;
-  padding-right: 37px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .movie:hover {
   cursor: auto;
-  transform: scale(1.05);
+  transform: scale(1.12);
 }
 
 /*# sourceMappingURL=style.css.map */
