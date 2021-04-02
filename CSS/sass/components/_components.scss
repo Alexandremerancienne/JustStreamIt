@@ -1,12 +1,17 @@
+#best-movie{
+    height:300px;
+}
+
 #best-movie-player{
-    height: 50px;
-    width:100px;
-    background:red;
-    border: 1px solid red;
+    height: 70px;
+    width:120px;
+    background:white;
+    border: 1px solid white;
     border-radius: 10px;
-    font-size: 1.3em;
+    font-size: 1.5em;
+    font-weight:bold;
     text-align: center;
-    color: white;
+    color:black;
     text-decoration: none;
 }
 
@@ -21,19 +26,20 @@
     }
 
 .prev{
-    padding-right:30px;
+    padding-left:50px;
     }
 
 .next{
-    padding-left:30px;
+    padding-right:50px;
     }
 
 .movie{
     height:270px;
     transition:0.5s ease;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left:20px;
+    padding-right:20px;
     &:hover{
         cursor:auto;
         transform:scale(1.12);}
 }
+

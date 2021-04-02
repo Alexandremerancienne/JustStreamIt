@@ -1,24 +1,18 @@
-$header-background:#900C3F;
-$text-shadow:#c7c7c7;
+$hover-header-links:#c7c7c7;
 
 @mixin best-movie{
-    border:solid white;
     #best-movie{
         h2, button{
             position:relative;
+        }
+        h2{
+            font-size:40px;
             left:90px;
-            top:140px;
+            top:80px;
+        }
+        button{
+            left:90px;
+            top:80px;
         }
     }
-}
-
-@mixin movie{
-    height:180px;
-    width:250px;
-    padding:0px 10px 0px 10px;
-    margin:0px 5px 0px 5px;
-    transition:width 0.8s, height 1s;
-        &:hover{
-            transform:scale(1.2);
-        }
 }

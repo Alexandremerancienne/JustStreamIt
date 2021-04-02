@@ -6,13 +6,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Bloc page */
-#bloc_page {
-  margin-left: auto;
-  margin-right: auto;
-  width: 1240px;
-}
-
 /* Body */
 body {
   color: white;
@@ -28,15 +21,14 @@ html {
 
 /* header */
 header {
-  height: 70px;
+  height: 130px;
   display: flex;
   align-items: baseline;
-  background-color: #900C3F;
-  padding-bottom: 20px;
 }
 header h1 {
-  font-size: 2.2em;
-  padding-left: 20px;
+  font-size: 2.3em;
+  padding-left: 40px;
+  color: red;
 }
 
 /* nav */
@@ -46,7 +38,7 @@ nav {
 
 /* ul */
 ul {
-  font-size: 1.2em;
+  font-size: 1.3em;
   list-style-type: none;
   display: flex;
 }
@@ -55,6 +47,7 @@ ul li {
 }
 ul li a {
   font-size: 1.5em;
+  font-weight: bold;
   color: white;
   padding-right: 30px;
   text-decoration: none;
@@ -64,46 +57,54 @@ ul li a:hover {
 }
 
 /* section */
-section {
-  height: 350px;
-  width: 100%;
+section:nth-child(1) {
   margin-top: 20px;
+  height: 500px;
 }
-section:nth-child(2) {
-  height: 300px;
-  border: solid white;
-}
-section:nth-child(2) #best-movie h2, section:nth-child(2) #best-movie button {
+section:nth-child(1) #best-movie h2, section:nth-child(1) #best-movie button {
   position: relative;
+}
+section:nth-child(1) #best-movie h2 {
+  font-size: 40px;
   left: 90px;
-  top: 140px;
+  top: 80px;
 }
-section:nth-child(n+3) {
-  height: 350px;
+section:nth-child(1) #best-movie button {
+  left: 90px;
+  top: 80px;
 }
-section:nth-child(n+3) h3 {
+section:nth-child(n+2) {
+  height: 370px;
+}
+section:nth-child(n+2) h3 {
   text-align: center;
-  font-size: 1.7em;
+  font-size: 2.3em;
   padding-top: 5px;
 }
 
 /* carousel */
 .carousel {
+  width: auto;
   height: 270px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+#best-movie {
+  height: 300px;
 }
 
 #best-movie-player {
-  height: 50px;
-  width: 100px;
-  background: red;
-  border: 1px solid red;
+  height: 70px;
+  width: 120px;
+  background: white;
+  border: 1px solid white;
   border-radius: 10px;
-  font-size: 1.3em;
+  font-size: 1.5em;
+  font-weight: bold;
   text-align: center;
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
@@ -119,18 +120,18 @@ section:nth-child(n+3) h3 {
 }
 
 .prev {
-  padding-right: 30px;
+  padding-left: 50px;
 }
 
 .next {
-  padding-left: 30px;
+  padding-right: 50px;
 }
 
 .movie {
   height: 270px;
   transition: 0.5s ease;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .movie:hover {
   cursor: auto;
