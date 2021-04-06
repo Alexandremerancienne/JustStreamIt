@@ -57,14 +57,14 @@ class Carousel{
         this.fourthMovie = new Image();
     }
 
-    fillPrintedPictures(){
-        this.duplicatedPictures = this.pictures.concat(this.pictures, this.pictures, this.pictures);
+    fillPrintedPictures(pictures){
+        this.duplicatedPictures = pictures.concat(pictures, pictures, pictures);
         var i;
         for (i=0;i<this.duplicatedPictures.length/4;i++){this.printedPictures.push(this.duplicatedPictures.slice(4*i,4*i+4))};
     }
 
-    fillMoviesList(){
-        let movieCategory = this.category;
+    fillMoviesList(category){
+        let movieCategory = category;
         let categoryId = document.getElementById(movieCategory);
         this.movies = categoryId.querySelectorAll('img.movie');
         this.firstMovie = this.movies[0];
@@ -97,18 +97,18 @@ class Carousel{
 }
 
 let carousel1 = new Carousel("best-rated-movies", picturesBestRatedMovies);
-carousel1.fillPrintedPictures();
-carousel1.fillMoviesList();
+carousel1.fillPrintedPictures(picturesBestRatedMovies);
+carousel1.fillMoviesList("best-rated-movies");
 
 let carousel2 = new Carousel("first-category", picturesFirstCategory);
-carousel2.fillPrintedPictures();
-carousel2.fillMoviesList();
+carousel2.fillPrintedPictures(picturesFirstCategory);
+carousel2.fillMoviesList("first-category");
 
 let carousel3 = new Carousel("second-category", picturesSecondCategory);
-carousel3.fillPrintedPictures();
-carousel3.fillMoviesList();
+carousel3.fillPrintedPictures(picturesSecondCategory);
+carousel3.fillMoviesList("second-category");
 
 let carousel4 = new Carousel("third-category", picturesThirdCategory);
-carousel4.fillPrintedPictures();
-carousel4.fillMoviesList();
+carousel4.fillPrintedPictures(picturesThirdCategory);
+carousel4.fillMoviesList("third-category");
 
