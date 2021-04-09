@@ -1,47 +1,4 @@
-let picturesBestRatedMovies = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
-'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
-'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
-'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
-'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
-'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
-'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
-'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
-'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
-'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
-
-let picturesFirstCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
-'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
-'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
-'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
-'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
-'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
-'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
-'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
-'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
-'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
-
-let picturesSecondCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
-'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
-'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
-'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
-'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
-'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
-'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
-'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
-'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
-'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
-
-let picturesThirdCategory = ['https://media.cdnws.com/_i/101847/858/746/61/3167v-chiffre-1.jpeg',
-'https://media.cdnws.com/_i/101847/862/3228/65/3168v-chiffre-2.jpeg',
-'https://media.cdnws.com/_i/101847/866/655/69/3169v-chiffre-3.jpeg',
-'https://media.cdnws.com/_i/101847/870/54/73/3170v-chiffre-4.jpeg',
-'https://media.cdnws.com/_i/101847/874/1330/77/3171v-chiffre-5.jpeg',
-'https://media.cdnws.com/_i/101847/878/3935/81/3172v-chiffre-6.jpeg',
-'https://media.cdnws.com/_i/101847/854/3793/57/3173v-chiffre-7.jpeg',
-'https://media.cdnws.com/_i/101847/882/3937/85/3174v-chiffre-8.jpeg',
-'https://media.cdnws.com/_i/101847/886/1756/89/3175v-chiffre-9.jpeg',
-'https://media.cdnws.com/_i/101847/890/2566/93/3176v-chiffre-0.jpeg'];
-
+/* Carousel class */
 
 class Carousel{
     constructor(category, pictures){
@@ -60,21 +17,22 @@ class Carousel{
     fillPrintedPictures(pictures){
         this.duplicatedPictures = pictures.concat(pictures, pictures, pictures);
         var i;
-        for (i=0;i<this.duplicatedPictures.length/4;i++){this.printedPictures.push(this.duplicatedPictures.slice(4*i,4*i+4))};
+        for (i=0;i<7;i++){this.printedPictures.push(this.duplicatedPictures.slice(4*i,4*i+4))};
     }
 
     fillMoviesList(category){
         let movieCategory = category;
         let categoryId = document.getElementById(movieCategory);
+        let displayedMovies = this.printedPictures[0];
         this.movies = categoryId.querySelectorAll('img.movie');
         this.firstMovie = this.movies[0];
-        this.firstMovie.src = this.printedPictures[0][0];
         this.secondMovie = this.movies[1];
-        this.secondMovie.src = this.printedPictures[0][1];
         this.thirdMovie = this.movies[2];
-        this.thirdMovie.src = this.printedPictures[0][2];
         this.fourthMovie = this.movies[3];
-        this.fourthMovie.src = this.printedPictures[0][3];
+        this.firstMovie.src = displayedMovies[0];
+        this.secondMovie.src = displayedMovies[1];
+        this.thirdMovie.src = displayedMovies[2];
+        this.fourthMovie.src = displayedMovies[3];
     }
 
     moveRight(){
@@ -96,19 +54,118 @@ class Carousel{
     }
 }
 
-let carousel1 = new Carousel("best-rated-movies", picturesBestRatedMovies);
-carousel1.fillPrintedPictures(picturesBestRatedMovies);
-carousel1.fillMoviesList("best-rated-movies");
+/* Generation of the 4 carousels */
 
-let carousel2 = new Carousel("first-category", picturesFirstCategory);
-carousel2.fillPrintedPictures(picturesFirstCategory);
-carousel2.fillMoviesList("first-category");
+let carousel1 = new Carousel();
+let carousel2 = new Carousel();
+let carousel3 = new Carousel();
+let carousel4 = new Carousel();
 
-let carousel3 = new Carousel("second-category", picturesSecondCategory);
-carousel3.fillPrintedPictures(picturesSecondCategory);
-carousel3.fillMoviesList("second-category");
+/* Function to sort the requests for a category */
 
-let carousel4 = new Carousel("third-category", picturesThirdCategory);
-carousel4.fillPrintedPictures(picturesThirdCategory);
-carousel4.fillMoviesList("third-category");
+function sortMovies(array){
+   return(array.sort(function(a, b){
+       if (b['imdb_score'] == a['imdb_score']){
+           return b['votes']-a['votes'];}
+       return b['imdb_score']-a['imdb_score'];}
+   ));}
 
+/* Best Rated Movies : fetch request returning an array of the 7 first movies' pictures */
+
+let bestMoviesUrls = ["http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes",
+"http://localhost:8000/api/v1/titles/?page=2&sort_by=-imdb_score,-votes"];
+
+let requestsBestMovies = bestMoviesUrls.map(url => fetch(url));
+
+async function requestBestMovies(){
+    var request1 = requestsBestMovies[0];
+    var request2 = requestsBestMovies[1];
+    await request1.then(request => request.json()).then(data => bestMovies1 = data.results);
+    await request2.then(request => request.json()).then(data => bestMovies2 = data.results);
+    var bestMoviesList = bestMovies1.concat(bestMovies2.slice(0,2));
+    var bestMoviesSorted = sortMovies(bestMoviesList);
+    var bestMoviesUrlsSorted = bestMoviesSorted.map(x => x['image_url']);
+    return bestMoviesUrlsSorted;}
+
+/* Best Rated Movies : Completing the carousel with the array of pictures urls */
+
+requestBestMovies().then(function(bestMoviesUrlsSorted){
+    carousel1.category = "best-rated-movies";
+    carousel1.pictures = bestMoviesUrlsSorted;
+    carousel1.fillPrintedPictures(bestMoviesUrlsSorted);
+    carousel1.fillMoviesList("best-rated-movies");});
+
+/* First Category Movies : fetch request returning an array of the 7 first movies' pictures */
+
+let firstCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=animation&sort_by=-imdb_score,-votes",
+"http://localhost:8000/api/v1/titles/?page=2&genre=animation&sort_by=-imdb_score,-votes"];
+
+let requestsFirstCategory = firstCategoryUrls.map(url => fetch(url));
+
+async function requestFirstCategory(){
+    var request1 = requestsFirstCategory[0];
+    var request2 = requestsFirstCategory[1];
+    await request1.then(request => request.json()).then(data => firstCategory1 = data.results);
+    await request2.then(request => request.json()).then(data => firstCategory2 = data.results);
+    var firstCategoryList = firstCategory1.concat(firstCategory2.slice(0,2));
+    var firstCategorySorted = sortMovies(firstCategoryList);
+    var firstCategoryUrlsSorted = firstCategorySorted.map(x => x['image_url']);
+    return firstCategoryUrlsSorted;}
+
+/* First Category Movies : Completing the carousel with the array of movies' pictures */
+
+requestFirstCategory().then(function(firstCategoryUrlsSorted){
+    carousel2.category = "first-category";
+    carousel2.pictures = firstCategoryUrlsSorted;
+    carousel2.fillPrintedPictures(firstCategoryUrlsSorted);
+    carousel2.fillMoviesList("first-category");});
+
+/* Second Category Movies : fetch request returning an array of the 7 first movies' pictures */
+
+let secondCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=drama&sort_by=-imdb_score,-votes",
+"http://localhost:8000/api/v1/titles/?page=2&genre=drama&sort_by=-imdb_score,-votes"];
+
+let requestsSecondCategory = secondCategoryUrls.map(url => fetch(url));
+
+async function requestSecondCategory(){
+    var request1 = requestsSecondCategory[0];
+    var request2 = requestsSecondCategory[1];
+    await request1.then(request => request.json()).then(data => secondCategory1 = data.results);
+    await request2.then(request => request.json()).then(data => secondCategory2 = data.results);
+    var secondCategoryList = secondCategory1.concat(secondCategory2.slice(0,2));
+    var secondCategorySorted = sortMovies(secondCategoryList);
+    var secondCategoryUrlsSorted = secondCategorySorted.map(x => x['image_url']);
+    return secondCategoryUrlsSorted;}
+
+/* Second Category Movies : Completing the carousel with the array of movies' pictures */
+
+requestSecondCategory().then(function(secondCategoryUrlsSorted){
+    carousel3.category = "second-category";
+    carousel3.pictures = secondCategoryUrlsSorted;
+    carousel3.fillPrintedPictures(secondCategoryUrlsSorted);
+    carousel3.fillMoviesList("second-category");});
+
+/* Third Category Movies : fetch request returning an array of the 7 first movies' pictures */
+
+let thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&sort_by=-imdb_score,-votes",
+"http://localhost:8000/api/v1/titles/?page=2&genre=fantasy&sort_by=-imdb_score,-votes"];
+
+let requestsThirdCategory = thirdCategoryUrls.map(url => fetch(url));
+
+async function requestThirdCategory(){
+    var request1 = requestsThirdCategory[0];
+    var request2 = requestsThirdCategory[1];
+    await request1.then(request => request.json()).then(data => thirdCategory1 = data.results);
+    await request2.then(request => request.json()).then(data => thirdCategory2 = data.results);
+    var thirdCategoryList = thirdCategory1.concat(thirdCategory2.slice(0,2));
+    var thirdCategorySorted = sortMovies(thirdCategoryList);
+    var thirdCategoryUrlsSorted = thirdCategorySorted.map(x => x['image_url']);
+    return thirdCategoryUrlsSorted;}
+
+/* Third Category Movies : Completing the carousel with the array of movies' pictures */
+
+requestThirdCategory().then(function(thirdCategoryUrlsSorted){
+    carousel4.category = "third-category";
+    carousel4.pictures = thirdCategoryUrlsSorted;
+    carousel4.fillPrintedPictures(thirdCategoryUrlsSorted);
+    carousel4.fillMoviesList("third-category");});
