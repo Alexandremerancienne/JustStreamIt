@@ -31,7 +31,7 @@ async function requestBestMovies(){
 requestBestMovies().then(function(bestMoviesUrlsSorted){
     carousel1.category = "best-rated-movies";
     carousel1.pictures = bestMoviesUrlsSorted;
-    carousel1.fillPrintedPictures(bestMoviesUrlsSorted);
+    carousel1.fillCategoryMovies(bestMoviesUrlsSorted);
     carousel1.fillMoviesList("best-rated-movies");});
 
 /* First Category Movies : fetch request returning an array of the 7 first movies' pictures */
@@ -56,7 +56,7 @@ async function requestFirstCategory(){
 requestFirstCategory().then(function(firstCategoryUrlsSorted){
     carousel2.category = "first-category";
     carousel2.pictures = firstCategoryUrlsSorted;
-    carousel2.fillPrintedPictures(firstCategoryUrlsSorted);
+    carousel2.fillCategoryMovies(firstCategoryUrlsSorted);
     carousel2.fillMoviesList("first-category");});
 
 /* Second Category Movies : fetch request returning an array of the 7 first movies' pictures */
@@ -81,7 +81,7 @@ async function requestSecondCategory(){
 requestSecondCategory().then(function(secondCategoryUrlsSorted){
     carousel3.category = "second-category";
     carousel3.pictures = secondCategoryUrlsSorted;
-    carousel3.fillPrintedPictures(secondCategoryUrlsSorted);
+    carousel3.fillCategoryMovies(secondCategoryUrlsSorted);
     carousel3.fillMoviesList("second-category");});
 
 /* Third Category Movies : fetch request returning an array of the 7 first movies' pictures */
@@ -106,5 +106,5 @@ async function requestThirdCategory(){
 requestThirdCategory().then(function(thirdCategoryUrlsSorted){
     carousel4.category = "third-category";
     carousel4.pictures = thirdCategoryUrlsSorted;
-    carousel4.fillPrintedPictures(thirdCategoryUrlsSorted);
+    carousel4.fillCategoryMovies(thirdCategoryUrlsSorted);
     carousel4.fillMoviesList("third-category");});
