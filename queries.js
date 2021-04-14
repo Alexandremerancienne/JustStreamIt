@@ -1,132 +1,106 @@
 /* AJAX requests to get movies' pictures */
 
-/* Function to sort the requests for a category */
+/* Function to sort an array of movies from a category */
 
 function sortMovies(array){
    return(array.sort(function(a, b){
        if (b['imdb_score'] == a['imdb_score']){
            return b['votes']-a['votes'];}
-       return b['imdb_score']-a['imdb_score'];}
-   ));}
+       return b['imdb_score']-a['imdb_score'];}));}
 
-/* Best Rated Movies : fetch request returning an array of the 7 first movies' pictures */
+/* Fetch request for the 10 first movies of a category */
+
+function fetchCategoryMovies(categoryUrls){
+    return categoryUrls.map(url => fetch(url));}
+
+/* Function returning an array with the data (presented as a JSON) of the 7 first movies from a category.
+   The function concatenates the 5 movies from the first request with the 2 first ones from the second request.
+   As films are sorted only in the sub-arrays, the output list is sorted before being returned. */
+
+async function requestCategoryMovies(categoryRequests){
+    let firstResponse = await categoryRequests[0];
+    let firstData = await firstResponse.json();
+    let firstResults = await firstData.results;
+    let secondResponse = await categoryRequests[1];
+    let secondData = await secondResponse.json();
+    let secondResults = await secondData.results;
+    let categoryMovies = firstResults.concat(secondResults.slice(0,2));
+    let sortedCategoryMovies = sortMovies(categoryMovies);
+    return sortedCategoryMovies;}
+
+/* Function returning an array with the URLs of the movies from a category */
+
+function extractMoviesUrls(sortedCategoryMovies){
+    return sortedCategoryMovies.map(x => x['image_url']);}
+
+/* Function filling a carousel with movies' pictures */
+
+function fillCarousel(sortedCategoryUrls, carousel, carouselCategory){
+    carousel.category = carouselCategory;
+    carousel.pictures = sortedCategoryUrls;
+    carousel.fillCategoryMovies(sortedCategoryUrls);
+    carousel.fillMoviesList(carouselCategory);}
+
+/* Function executing extractMoviesUrls() function then fillCarousel() function */
+
+function fillCarouselFromUrls(sortedCategoryMovies, carousel, carouselCategory){
+    let sortedCategoryUrls = extractMoviesUrls(sortedCategoryMovies);
+    fillCarousel(sortedCategoryUrls, carousel, carouselCategory);}
+
+/* Functions to get the title, the picture and the description of the Best Rated Movie */
+
+function getBestMovieTitle(array){
+let bestMovieTitle = array[0].title;
+document.querySelector('section h2').innerHTML = bestMovieTitle;}
+
+function getBestMoviePicture(array){
+let bestMoviePicture = document.querySelector('section img');
+bestMoviePicture.src = array[0];}
+
+async function getBestMovieDescription(array){
+let bestMovieUrl = array[0].url;
+let requestBestMovie = await fetch(bestMovieUrl);
+let dataBestMovie = await requestBestMovie.json();
+let descriptionBestMovie = dataBestMovie.description;
+document.getElementById('description').innerHTML = descriptionBestMovie;}
+
+function getBestMovieDetails(array1, array2){
+getBestMovieTitle(array1);
+getBestMoviePicture(array2);
+getBestMovieDescription(array1);}
+
+/* Execution of the functions defined above for all categories */
+
+/* Best Rated Movies */
 
 let bestMoviesUrls = ["http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&sort_by=-imdb_score,-votes"];
+let requestsBestMovies = fetchCategoryMovies(bestMoviesUrls);
+requestCategoryMovies(requestsBestMovies).then(function(sortedBestMovies){
+let sortedBestMoviesUrls = extractMoviesUrls(sortedBestMovies);
+fillCarousel(sortedBestMoviesUrls, carousel1, "best-rated-movies");
+getBestMovieDetails(sortedBestMovies, sortedBestMoviesUrls);})
 
-let requestsBestMovies = bestMoviesUrls.map(url => fetch(url));
-
-async function requestBestMovies(){
-
-    /* Requests to return the 7 best-rated movies in the form of an array */
-
-    let request1 = requestsBestMovies[0];
-    let request2 = requestsBestMovies[1];
-    await request1.then(response => response.json()).then(data => bestMovies1 = data.results);
-    await request2.then(response => response.json()).then(data => bestMovies2 = data.results);
-    let bestMoviesList = bestMovies1.concat(bestMovies2.slice(0,2));
-    var bestMoviesSorted = sortMovies(bestMoviesList);
-
-    /* Extraction of the title of the best-rated movie to be included in DOM */
-
-    var bestMovieTitle = bestMoviesSorted[0]['title'];
-    document.querySelector('section h2').innerHTML = bestMovieTitle;
-
-    /* Extraction of the description of the best-rated movie to be included in DOM */
-
-    var bestMovieId = bestMoviesSorted[0]['id'];
-    let request = fetch("http://localhost:8000/api/v1/titles/" + bestMovieId.toString());
-    await request.then(response => response.json()).then(data => description = data.description);
-    document.getElementById('description').innerHTML = description;
-
-    return bestMoviesSorted;}
-
-/* Best Rated Movies : Carousel completed with the array of pictures' urls */
-
-requestBestMovies().then(function(bestMoviesSorted){
-
-    /* Extraction of pictures' url from the array of best-rated movies */
-
-    var bestMoviesUrlsSorted = bestMoviesSorted.map(x => x['image_url']);
-    var bestRatedMovie = document.querySelector('section img');
-    bestRatedMovie.src = bestMoviesUrlsSorted[0];
-    carousel1.category = "best-rated-movies";
-    carousel1.pictures = bestMoviesUrlsSorted;
-    carousel1.fillCategoryMovies(bestMoviesUrlsSorted);
-    carousel1.fillMoviesList("best-rated-movies");
-    });
-
-/* First Category Movies : fetch request returning an array of the 7 first movies' pictures */
+/* First Category Movies */
 
 let firstCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=animation&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=animation&sort_by=-imdb_score,-votes"];
+let requestsFirstCategory = fetchCategoryMovies(firstCategoryUrls);
+requestCategoryMovies(requestsFirstCategory).then(function(sortedFirstCategory){
+fillCarouselFromUrls(sortedFirstCategory, carousel2, "first-category");})
 
-let requestsFirstCategory = firstCategoryUrls.map(url => fetch(url));
-
-async function requestFirstCategory(){
-    var request1 = requestsFirstCategory[0];
-    var request2 = requestsFirstCategory[1];
-    await request1.then(response => response.json()).then(data => firstCategory1 = data.results);
-    await request2.then(response => response.json()).then(data => firstCategory2 = data.results);
-    var firstCategoryList = firstCategory1.concat(firstCategory2.slice(0,2));
-    var firstCategorySorted = sortMovies(firstCategoryList);
-    var firstCategoryUrlsSorted = firstCategorySorted.map(x => x['image_url']);
-    return firstCategoryUrlsSorted;}
-
-/* First Category Movies : Carousel completed with the array of movies' pictures */
-
-requestFirstCategory().then(function(firstCategoryUrlsSorted){
-    carousel2.category = "first-category";
-    carousel2.pictures = firstCategoryUrlsSorted;
-    carousel2.fillCategoryMovies(firstCategoryUrlsSorted);
-    carousel2.fillMoviesList("first-category");});
-
-/* Second Category Movies : fetch request returning an array of the 7 first movies' pictures */
+/* Second Category Movies */
 
 let secondCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=drama&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=drama&sort_by=-imdb_score,-votes"];
+let requestsSecondCategory = fetchCategoryMovies(secondCategoryUrls);
+requestCategoryMovies(requestsSecondCategory).then(function(sortedSecondCategory){
+fillCarouselFromUrls(sortedSecondCategory, carousel3, "second-category");})
 
-let requestsSecondCategory = secondCategoryUrls.map(url => fetch(url));
-
-async function requestSecondCategory(){
-    var request1 = requestsSecondCategory[0];
-    var request2 = requestsSecondCategory[1];
-    await request1.then(response => response.json()).then(data => secondCategory1 = data.results);
-    await request2.then(response => response.json()).then(data => secondCategory2 = data.results);
-    var secondCategoryList = secondCategory1.concat(secondCategory2.slice(0,2));
-    var secondCategorySorted = sortMovies(secondCategoryList);
-    var secondCategoryUrlsSorted = secondCategorySorted.map(x => x['image_url']);
-    return secondCategoryUrlsSorted;}
-
-/* Second Category Movies : Carousel completed with the array of movies' pictures */
-
-requestSecondCategory().then(function(secondCategoryUrlsSorted){
-    carousel3.category = "second-category";
-    carousel3.pictures = secondCategoryUrlsSorted;
-    carousel3.fillCategoryMovies(secondCategoryUrlsSorted);
-    carousel3.fillMoviesList("second-category");});
-
-/* Third Category Movies : fetch request returning an array of the 7 first movies' pictures */
+/* Third Category Movies */
 
 let thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=fantasy&sort_by=-imdb_score,-votes"];
-
-let requestsThirdCategory = thirdCategoryUrls.map(url => fetch(url));
-
-async function requestThirdCategory(){
-    var request1 = requestsThirdCategory[0];
-    var request2 = requestsThirdCategory[1];
-    await request1.then(response => response.json()).then(data => thirdCategory1 = data.results);
-    await request2.then(response => response.json()).then(data => thirdCategory2 = data.results);
-    var thirdCategoryList = thirdCategory1.concat(thirdCategory2.slice(0,2));
-    var thirdCategorySorted = sortMovies(thirdCategoryList);
-    var thirdCategoryUrlsSorted = thirdCategorySorted.map(x => x['image_url']);
-    return thirdCategoryUrlsSorted;}
-
-/* Third Category Movies : Carousel completed with the array of movies' pictures */
-
-requestThirdCategory().then(function(thirdCategoryUrlsSorted){
-    carousel4.category = "third-category";
-    carousel4.pictures = thirdCategoryUrlsSorted;
-    carousel4.fillCategoryMovies(thirdCategoryUrlsSorted);
-    carousel4.fillMoviesList("third-category");});
+let requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
+requestCategoryMovies(requestsThirdCategory).then(function(sortedThirdCategory){
+fillCarouselFromUrls(sortedThirdCategory, carousel4, "third-category");})
