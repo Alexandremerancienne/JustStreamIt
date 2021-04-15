@@ -1,3 +1,10 @@
+/* "Carousel movies" field added to all categories */
+
+document.querySelectorAll(".carousel-movies").forEach(carousel => {carousel.innerHTML =
+("<img class='movie' src='' onclick='openModal()'>"
++ "<div id='myModal' class='modal'><div class='modal-content'>"
++ "<span class='close' onclick='closeModal()'>&times;</span><p></p></div></div>").repeat(4);});
+
 /* Carousel class */
 
 class Carousel{
@@ -18,8 +25,7 @@ class Carousel{
         for (i=0;i<7;i++){this.categoryMovies.push(extendedPictures.slice(4*i,4*i+4))};
     }
 
-    fillMoviesList(category){
-        let movieCategory = category;
+    fillMoviesList(movieCategory){
         let categoryId = document.getElementById(movieCategory);
         let displayedMovies = this.categoryMovies[0];
         let movies = categoryId.querySelectorAll('img.movie');
