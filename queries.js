@@ -117,19 +117,3 @@ let requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
 requestCategoryMovies(requestsThirdCategory).then(function(sortedThirdCategory){
 fillCarouselFromUrls(sortedThirdCategory, carousel4, "third-category");})
 
-/* Once the carousels have been completed, the following functions will fill the modals for each picture */
-
-async function getMovieDescription(movie){
-let movieUrl = movie.url;
-let requestMovie = await fetch(movieUrl);
-let dataMovie = await requestMovie.json();
-return dataMovie;}
-
-async function getModalsDetails(){
-
-let bestMoviesModals = document.querySelectorAll("#best-rated-movies p");
-for (p of bestMoviesModals){
-p.textContent = "";
-}}
-
-getModalsDetails();
