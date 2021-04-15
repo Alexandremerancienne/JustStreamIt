@@ -57,12 +57,24 @@ function getBestMoviePicture(array){
 let bestMoviePicture = document.querySelector('section img');
 bestMoviePicture.src = array[0];}
 
+function writeModal(element, data){
+    element.innerHTML = "Genres: " + data.genres + "<br />"
+    + "Release Date: " + data.date_published + "<br />" + "Rated: "
+    + data.rated + "<br />" + "Imdb score: " + data.imdb_score + "<br />"
+    + "Directed by: " + data.directors + "<br />" + "Actors: " + data.actors + "<br />"
+    + "Duration: " + data.duration + "<br />" + "Countries: " + data.countries + "<br />"
+    + "Box-Office Result: " + data.metascore + "<br />"
+    + "Description: " + data.long_description + "<br />";}
+
 async function getBestMovieDescription(array){
 let bestMovieUrl = array[0].url;
 let requestBestMovie = await fetch(bestMovieUrl);
 let dataBestMovie = await requestBestMovie.json();
 let descriptionBestMovie = dataBestMovie.description;
-document.getElementById('description').innerHTML = descriptionBestMovie;}
+document.getElementById('description').innerHTML = descriptionBestMovie;
+let bestMovieModal = document.querySelector('#modalBestMovie p');
+writeModal(bestMovieModal, dataBestMovie);
+}
 
 function getBestMovieDetails(array1, array2){
 getBestMovieTitle(array1);
@@ -104,3 +116,20 @@ let thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&so
 let requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
 requestCategoryMovies(requestsThirdCategory).then(function(sortedThirdCategory){
 fillCarouselFromUrls(sortedThirdCategory, carousel4, "third-category");})
+
+/* Once the carousels have been completed, the following functions will fill the modals for each picture */
+
+async function getMovieDescription(movie){
+let movieUrl = movie.url;
+let requestMovie = await fetch(movieUrl);
+let dataMovie = await requestMovie.json();
+return dataMovie;}
+
+async function getModalsDetails(){
+
+let bestMoviesModals = document.querySelectorAll("#best-rated-movies p");
+for (p of bestMoviesModals){
+p.textContent = "";
+}}
+
+getModalsDetails();
