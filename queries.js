@@ -93,8 +93,10 @@ function getBestMovieTitle(array){
     document.querySelector('section h2').innerHTML = bestMovieTitle;}
 
 function getBestMoviePicture(array){
-    let bestMoviePicture = document.querySelector('section img');
-    bestMoviePicture.src = array[0];}
+    let bestMoviePicture = document.querySelector('.best-movie-picture');
+    let bestMovieModalPicture = document.querySelector('.modal-picture');
+    bestMoviePicture.src = array[0];
+    bestMovieModalPicture.src = array[0];}
 
 async function getBestMovieDescription(array){
     let bestMovieUrl = array[0].url;
