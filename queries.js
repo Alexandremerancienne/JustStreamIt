@@ -65,16 +65,26 @@ async function fillCategoryModals(array, category){
     let dataThirdMovie = await requestThirdMovie.json();
     let dataFourthMovie = await requestFourthMovie.json();
 
-    let categoryModals = document.querySelectorAll(category + ' p');
-    let firstMovieModal = categoryModals[0];
-    let secondMovieModal = categoryModals[1];
-    let thirdMovieModal = categoryModals[2];
-    let fourthMovieModal = categoryModals[3];
+    let categoryModalsText = document.querySelectorAll(category + ' p');
+    let categoryModalsPictures = document.querySelectorAll(category + ' .modal-picture');
+    let firstMovieModalText = categoryModalsText[0];
+    let firstMovieModalPicture = categoryModalsPictures[0];
+    let secondMovieModalText = categoryModalsText[1];
+    let secondMovieModalPicture = categoryModalsPictures[1];
+    let thirdMovieModalText = categoryModalsText[2];
+    let thirdMovieModalPicture = categoryModalsPictures[2];
+    let fourthMovieModalText = categoryModalsText[3];
+    let fourthMovieModalPicture = categoryModalsPictures[3];
 
-    fillModal(firstMovieModal, dataFirstMovie);
-    fillModal(secondMovieModal, dataSecondMovie);
-    fillModal(thirdMovieModal, dataThirdMovie);
-    fillModal(fourthMovieModal, dataFourthMovie);}
+    fillModalText(firstMovieModalText, dataFirstMovie);
+    fillModalText(secondMovieModalText, dataSecondMovie);
+    fillModalText(thirdMovieModalText, dataThirdMovie);
+    fillModalText(fourthMovieModalText, dataFourthMovie);
+
+    fillModalPicture(firstMovieModalPicture, dataFirstMovie);
+    fillModalPicture(secondMovieModalPicture, dataSecondMovie);
+    fillModalPicture(thirdMovieModalPicture, dataThirdMovie);
+    fillModalPicture(fourthMovieModalPicture, dataFourthMovie);}
 
 /* Functions to get the title, the picture and the description of the best rated movie */
 
@@ -93,7 +103,7 @@ async function getBestMovieDescription(array){
     let descriptionBestMovie = dataBestMovie.description;
     document.getElementById('description').innerHTML = descriptionBestMovie;
     let bestMovieModal = document.querySelector('#modalBestMovie p');
-    fillModal(bestMovieModal, dataBestMovie);}
+    fillModalText(bestMovieModal, dataBestMovie);}
 
 /* Function executing the three previous functions successively */
 
