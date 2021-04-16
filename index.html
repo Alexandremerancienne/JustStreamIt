@@ -23,10 +23,10 @@
             <div id="best-movie">
                 <div class="movie-description">
                     <h2></h2>
-                    <button id="best-movie-player" type="button" onclick="openModal()">Play</button>
+                    <button id="best-movie-player" type="button" onclick="openModal(modalBestMovie)">Play</button>
                     <div id="modalBestMovie" class="modal">
                         <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
+                        <span class="close" onclick="closeModal(modalBestMovie)">&times;</span>
                             <p></p>
                         </div>
                     </div>
@@ -41,7 +41,41 @@
                 <h3 class="row-header">Best Rated Movies</h3>
                 <div class="carousel">
                     <a class="prev" onclick="carousel1.moveLeft()">&#10094;</a>
-                    <div class="carousel-movies"></div>
+                    <div class="carousel-movies">
+
+                        <img class='movie' src='' onclick='openModal(modal1)'>
+                        <div id="modal1" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal1)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal2)'>
+                        <div id="modal2" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal2)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal3)'>
+                        <div id="modal3" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal3)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal4)'>
+                        <div id="modal4" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal4)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </div>
                     <a class="next" onclick="carousel1.moveRight()">&#10095;</a>
                 </div>
             </div>
@@ -52,7 +86,41 @@
                 <h3 class="row-header">Animation</h3>
                 <div class="carousel">
                     <a class="prev" onclick="carousel2.moveLeft()">&#10094;</a>
-                    <div class="carousel-movies"></div>
+                    <div class="carousel-movies">
+
+                        <img class='movie' src='' onclick='openModal(modal5)'>
+                        <div id="modal5" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal5)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal6)'>
+                        <div id="modal6" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal6)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal7)'>
+                        <div id="modal7" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal7)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal8)'>
+                        <div id="modal8" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal8)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </div>
                     <a class="next" onclick="carousel2.moveRight()">&#10095;</a>
                 </div>
             </div>
@@ -63,7 +131,43 @@
                 <h3 class="row-header">Drama</h3>
                 <div class="carousel">
                     <a class="prev" onclick="carousel3.moveLeft()">&#10094;</a>
-                    <div class="carousel-movies"></div>
+                    <div class="carousel-movies">
+
+                        <img class='movie' src='' onclick='openModal(modal9)'>
+                        <div id="modal9" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal9)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal10)'>
+                        <div id="modal10" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal10)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal11)'>
+                        <div id="modal11" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal11)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal12)'>
+                        <div id="modal12" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal12)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                     <a class="next" onclick="carousel3.moveRight()">&#10095;</a>
                 </div>
             </div>
@@ -74,7 +178,41 @@
                 <h3 class="row-header">Fantasy</h3>
                 <div class="carousel">
                     <a class="prev" onclick="carousel4.moveLeft()">&#10094;</a>
-                    <div class="carousel-movies"></div>
+                    <div class="carousel-movies">
+
+                        <img class='movie' src='' onclick='openModal(modal13)'>
+                        <div id="modal13" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal13)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal14)'>
+                        <div id="modal14" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal14)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal15)'>
+                        <div id="modal15" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal15)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <img class='movie' src='' onclick='openModal(modal16)'>
+                        <div id="modal16" class='modal'>
+                            <div class='modal-content'>
+                                <span class='close' onclick='closeModal(modal16)'>&times;</span>
+                                <p></p>
+                            </div>
+                        </div>
+
+                    </div>
                     <a class="next" onclick="carousel4.moveRight()">&#10095;</a>
                 </div>
             </div>

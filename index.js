@@ -1,10 +1,3 @@
-/* "Carousel movies" field added to all categories */
-
-document.querySelectorAll(".carousel-movies").forEach(carousel => {carousel.innerHTML =
-("<img class='movie' src='' onclick='openModal()'>"
-+ "<div id='myModal' class='modal'><div class='modal-content'>"
-+ "<span class='close' onclick='closeModal()'>&times;</span><p></p></div></div>").repeat(4);});
-
 /* Carousel class */
 
 class Carousel{
