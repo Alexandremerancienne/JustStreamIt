@@ -1,26 +1,13 @@
-function fillModalText(element, data){
-    element.innerHTML = "<b>Title: </b>" + data.title + "<br />"
-    + "<b>Genres: </b>" + data.genres + "<br />"
-    + "<b>Release Date: </b>" + data.date_published + "<br />" + "<b>Rated: </b>"
-    + data.rated + "<br />" + "<b>Imdb score: </b>" + data.imdb_score + "<br />"
-    + "<b>Directed by: </b>" + data.directors + "<br />" + "<b>Actors: </b>" + data.actors + "<br />"
-    + "<b>Duration: </b>" + data.duration + "<br />" + "<b>Countries: </b>" + data.countries + "<br />"
-    + "<b>Box-Office Result: </b>" + data.metascore + "<br />" + "<br />" + "<br />"
-    + data.long_description + "<br />";}
-
-function fillModalPicture(img, data){
-    img.src = data.image_url;}
-
 /* Carousel class */
 
 class Carousel{
     constructor(category, pictures){
         this.category = category;
         this.pictures = pictures;
-        this.modals = [];
-        this.displayedModals = [];
         this.index = 0;
         this.categoryMovies = [];
+        this.categoryModals = [];
+        this.displayedModals = [];
         this.firstMovie = new Image();
         this.secondMovie = new Image();
         this.thirdMovie = new Image();
@@ -33,9 +20,10 @@ class Carousel{
         for (i=0;i<7;i++){this.categoryMovies.push(extendedPictures.slice(4*i,4*i+4))};
     }
 
-    fillCategoryModals(){
-        var j;
-        for (j=0;j<7;j++){this.displayedModals.push(this.modals.slice(4*i,4*i+4))};
+    fillAllModals(modals){
+        let extendedModals = modals.concat(modals, modals, modals);
+        var x;
+        for (x=0;x<7;x++){this.categoryModals.push(extendedModals.slice(4*x,4*x+4))};
     }
 
     fillMoviesList(movieCategory){
@@ -59,8 +47,8 @@ class Carousel{
         this.secondMovie.src = this.categoryMovies[this.index][1];
         this.thirdMovie.src = this.categoryMovies[this.index][2];
         this.fourthMovie.src = this.categoryMovies[this.index][3];
-        this.displayedModals = this.modals[index];
-
+        this.displayedModals = this.categoryModals[this.index];
+        fillCategoryModals(this.displayedModals, '#' + this.category);
     }
 
     moveLeft(){
@@ -70,7 +58,8 @@ class Carousel{
         this.secondMovie.src = this.categoryMovies[this.index][1];
         this.thirdMovie.src = this.categoryMovies[this.index][2];
         this.fourthMovie.src = this.categoryMovies[this.index][3];
-        this.displayedModals = this.modals[index];
+        this.displayedModals = this.categoryModals[this.index];
+        fillCategoryModals(this.displayedModals, '#' + this.category);
     }
 }
 

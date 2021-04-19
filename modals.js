@@ -7,8 +7,8 @@ function closeModal(modal) {
   modal.style.display = "none";}
 
 /* Function to close the modal when clicking outside */
-let modals = [modalBestMovie, modal1, modal2, modal3, modal4, modal5, modal6, modal7, modal7, modal8, modal9, modal10,
-modal11, modal12, modal13, modal14, modal15, modal16];
+let modals = [modal1, modal2, modal3, modal4, modal5, modal6, modal7, modal7, modal8, modal9, modal10,
+modal11, modal12, modal13, modal14, modal15, modal16, modalBestMovie];
 
 window.onclick = function(event) {
   for (modal of modals){
