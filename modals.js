@@ -12,17 +12,17 @@ function fillMovieDom(modal){
 function fillCarouselDom(modal1, modal2, modal3, modal4){
     return fillMovieDom(modal1) + fillMovieDom(modal2) + fillMovieDom(modal3) + fillMovieDom(modal4);}
 
-let bestMoviesCarousel = document.querySelector("#best-rated-movies .carousel-movies");
-let firstCategoryCarousel = document.querySelector("#first-category .carousel-movies");
-let secondCategoryCarousel = document.querySelector("#second-category .carousel-movies");
-let thirdCategoryCarousel = document.querySelector("#third-category .carousel-movies");
+const bestMoviesCarousel = document.querySelector("#best-rated-movies .carousel-movies");
+const firstCategoryCarousel = document.querySelector("#first-category .carousel-movies");
+const secondCategoryCarousel = document.querySelector("#second-category .carousel-movies");
+const thirdCategoryCarousel = document.querySelector("#third-category .carousel-movies");
 
 bestMoviesCarousel.innerHTML= fillCarouselDom('modal1', 'modal2', 'modal3', 'modal4');
 firstCategoryCarousel.innerHTML= fillCarouselDom('modal5', 'modal6', 'modal7', 'modal8');
 secondCategoryCarousel.innerHTML= fillCarouselDom('modal9', 'modal10', 'modal11', 'modal12');
 thirdCategoryCarousel.innerHTML= fillCarouselDom('modal13', 'modal14', 'modal15', 'modal16');
 
-let modals = [modal1, modal2, modal3, modal4, modal5, modal6, modal7, modal7, modal8, modal9, modal10,
+const modals = [modal1, modal2, modal3, modal4, modal5, modal6, modal7, modal7, modal8, modal9, modal10,
 modal11, modal12, modal13, modal14, modal15, modal16, modalBestMovie];
 
 /* Function to open the modal on click */
