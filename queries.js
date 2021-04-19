@@ -21,14 +21,14 @@ function fetchCategoryMovies(categoryUrls){
    As films are sorted only in the sub-arrays, the output list is sorted before being returned. */
 
 async function requestCategoryMovies(categoryRequests){
-    let firstResponse = await categoryRequests[0];
-    let firstData = await firstResponse.json();
-    let firstResults = await firstData.results;
-    let secondResponse = await categoryRequests[1];
-    let secondData = await secondResponse.json();
-    let secondResults = await secondData.results;
-    let categoryMovies = firstResults.concat(secondResults.slice(0,2));
-    let sortedCategoryMovies = sortMovies(categoryMovies);
+    const firstResponse = await categoryRequests[0];
+    const firstData = await firstResponse.json();
+    const firstResults = await firstData.results;
+    const secondResponse = await categoryRequests[1];
+    const secondData = await secondResponse.json();
+    const secondResults = secondData.results;
+    const categoryMovies = firstResults.concat(secondResults.slice(0,2));
+    const sortedCategoryMovies = sortMovies(categoryMovies);
     return sortedCategoryMovies;}
 
 /* Function returning an array with the pictures'URLs of the movies from a category */
@@ -47,28 +47,28 @@ function fillCarousel(sortedCategoryUrls, carousel, carouselCategory){
 /* Function executing extractMoviesPicturesUrls() and fillCarousel() functions successively */
 
 function fillCarouselFromUrls(sortedCategoryMovies, carousel, carouselCategory){
-    let sortedCategoryUrls = extractMoviesPicturesUrls(sortedCategoryMovies);
+    const sortedCategoryUrls = extractMoviesPicturesUrls(sortedCategoryMovies);
     fillCarousel(sortedCategoryUrls, carousel, carouselCategory);}
 
 /* Functions to get the title, the picture and the description of the best rated movie */
 
 function getBestMovieTitle(array){
-    let bestMovieTitle = array[0].title;
+    const bestMovieTitle = array[0].title;
     document.querySelector('section h2').innerHTML = bestMovieTitle;}
 
 function getBestMoviePicture(array){
-    let bestMoviePicture = document.querySelector('.best-movie-picture');
-    let bestMovieModalPicture = document.querySelector('.modal-picture');
+    const bestMoviePicture = document.querySelector('.best-movie-picture');
+    const bestMovieModalPicture = document.querySelector('.modal-picture');
     bestMoviePicture.src = array[0];
     bestMovieModalPicture.src = array[0];}
 
 async function getBestMovieDescription(array){
-    let bestMovieUrl = array[0].url;
-    let requestBestMovie = await fetch(bestMovieUrl);
-    let dataBestMovie = await requestBestMovie.json();
-    let descriptionBestMovie = dataBestMovie.description;
+    const bestMovieUrl = array[0].url;
+    const requestBestMovie = await fetch(bestMovieUrl);
+    const dataBestMovie = await requestBestMovie.json();
+    const descriptionBestMovie = dataBestMovie.description;
     document.getElementById('description').innerHTML = descriptionBestMovie;
-    let bestMovieModal = document.querySelector('#modalBestMovie p');
+    const bestMovieModal = document.querySelector('#modalBestMovie p');
     fillModalText(bestMovieModal, dataBestMovie);}
 
 /* Function executing the three previous functions successively */
@@ -98,51 +98,35 @@ function fillModalPicture(img, data){
 /* Function to fill all the modals from a category for the 4 pictures displayed */
 
 async function fillCategoryModals(array, category){
-    let firstMovieUrl = array[0].url;
-    let secondMovieUrl = array[1].url;
-    let thirdMovieUrl = array[2].url;
-    let fourthMovieUrl = array[3].url;
+    const requestFirstMovie = await fetch(array[0].url);
+    const requestSecondMovie = await fetch(array[1].url);
+    const requestThirdMovie = await fetch(array[2].url);
+    const requestFourthMovie = await fetch(array[3].url);
 
-    let requestFirstMovie = await fetch(firstMovieUrl);
-    let requestSecondMovie = await fetch(secondMovieUrl);
-    let requestThirdMovie = await fetch(thirdMovieUrl);
-    let requestFourthMovie = await fetch(fourthMovieUrl);
+    const dataFirstMovie = await requestFirstMovie.json();
+    const dataSecondMovie = await requestSecondMovie.json();
+    const dataThirdMovie = await requestThirdMovie.json();
+    const dataFourthMovie = await requestFourthMovie.json();
+    const dataMovies = [dataFirstMovie, dataSecondMovie, dataThirdMovie, dataFourthMovie];
 
-    let dataFirstMovie = await requestFirstMovie.json();
-    let dataSecondMovie = await requestSecondMovie.json();
-    let dataThirdMovie = await requestThirdMovie.json();
-    let dataFourthMovie = await requestFourthMovie.json();
+    const categoryModalsText = document.querySelectorAll(category + ' p');
+    const categoryModalsPictures = document.querySelectorAll(category + ' .modal-picture');
+    const [firstMovieModalText, secondMovieModalText, thirdMovieModalText, fourthMovieModalText] = categoryModalsText;
+    const [firstMovieModalPic, secondMovieModalPic, thirdMovieModalPic, fourthMovieModalPic] = categoryModalsPictures;
 
-    let categoryModalsText = document.querySelectorAll(category + ' p');
-    let categoryModalsPictures = document.querySelectorAll(category + ' .modal-picture');
-    let firstMovieModalText = categoryModalsText[0];
-    let firstMovieModalPicture = categoryModalsPictures[0];
-    let secondMovieModalText = categoryModalsText[1];
-    let secondMovieModalPicture = categoryModalsPictures[1];
-    let thirdMovieModalText = categoryModalsText[2];
-    let thirdMovieModalPicture = categoryModalsPictures[2];
-    let fourthMovieModalText = categoryModalsText[3];
-    let fourthMovieModalPicture = categoryModalsPictures[3];
-
-    fillModalText(firstMovieModalText, dataFirstMovie);
-    fillModalText(secondMovieModalText, dataSecondMovie);
-    fillModalText(thirdMovieModalText, dataThirdMovie);
-    fillModalText(fourthMovieModalText, dataFourthMovie);
-
-    fillModalPicture(firstMovieModalPicture, dataFirstMovie);
-    fillModalPicture(secondMovieModalPicture, dataSecondMovie);
-    fillModalPicture(thirdMovieModalPicture, dataThirdMovie);
-    fillModalPicture(fourthMovieModalPicture, dataFourthMovie);}
+    for(i=0;i<=3;i++){
+        fillModalText(categoryModalsText[i], dataMovies[i]);
+        fillModalPicture(categoryModalsPictures[i], dataMovies[i]);}}
 
 /* Execution of the functions defined above for all categories */
 
 /* Best Rated Movies */
 
-let bestMoviesUrls = ["http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes",
+const bestMoviesUrls = ["http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&sort_by=-imdb_score,-votes"];
-let requestsBestMovies = fetchCategoryMovies(bestMoviesUrls);
+const requestsBestMovies = fetchCategoryMovies(bestMoviesUrls);
 requestCategoryMovies(requestsBestMovies).then(function(sortedBestMovies){
-let sortedBestMoviesUrls = extractMoviesPicturesUrls(sortedBestMovies);
+const sortedBestMoviesUrls = extractMoviesPicturesUrls(sortedBestMovies);
 fillCarousel(sortedBestMoviesUrls, carousel1, "best-rated-movies");
 carousel1.fillAllModals(sortedBestMovies);
 carousel1.displayedModals = carousel1.categoryModals[0];
@@ -151,11 +135,11 @@ fillCategoryModals(carousel1.displayedModals, '#best-rated-movies');})
 
 /* First Category Movies */
 
-let firstCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=animation&sort_by=-imdb_score,-votes",
+const firstCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=animation&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=animation&sort_by=-imdb_score,-votes"];
-let requestsFirstCategory = fetchCategoryMovies(firstCategoryUrls);
+const requestsFirstCategory = fetchCategoryMovies(firstCategoryUrls);
 requestCategoryMovies(requestsFirstCategory).then(function(sortedFirstCategory){
-let sortedFirstCategoryUrls = extractMoviesPicturesUrls(sortedFirstCategory);
+const sortedFirstCategoryUrls = extractMoviesPicturesUrls(sortedFirstCategory);
 fillCarousel(sortedFirstCategoryUrls, carousel2, "first-category");
 carousel2.fillAllModals(sortedFirstCategory);
 carousel2.displayedModals = carousel2.categoryModals[0];
@@ -163,11 +147,11 @@ fillCategoryModals(carousel2.displayedModals, '#first-category');})
 
 /* Second Category Movies */
 
-let secondCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=drama&sort_by=-imdb_score,-votes",
+const secondCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=drama&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=drama&sort_by=-imdb_score,-votes"];
-let requestsSecondCategory = fetchCategoryMovies(secondCategoryUrls);
+const requestsSecondCategory = fetchCategoryMovies(secondCategoryUrls);
 requestCategoryMovies(requestsSecondCategory).then(function(sortedSecondCategory){
-let sortedSecondCategoryUrls = extractMoviesPicturesUrls(sortedSecondCategory);
+const sortedSecondCategoryUrls = extractMoviesPicturesUrls(sortedSecondCategory);
 fillCarousel(sortedSecondCategoryUrls, carousel3, "second-category");
 carousel3.fillAllModals(sortedSecondCategory);
 carousel3.displayedModals = carousel3.categoryModals[0];
@@ -175,11 +159,11 @@ fillCategoryModals(carousel3.displayedModals, '#second-category');})
 
 /* Third Category Movies */
 
-let thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&sort_by=-imdb_score,-votes",
+const thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=fantasy&sort_by=-imdb_score,-votes"];
-let requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
+const requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
 requestCategoryMovies(requestsThirdCategory).then(function(sortedThirdCategory){
-let sortedThirdCategoryUrls = extractMoviesPicturesUrls(sortedThirdCategory);
+const sortedThirdCategoryUrls = extractMoviesPicturesUrls(sortedThirdCategory);
 fillCarousel(sortedThirdCategoryUrls, carousel4, "third-category");
 carousel4.fillAllModals(sortedThirdCategory);
 carousel4.displayedModals = carousel4.categoryModals[0];
