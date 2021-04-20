@@ -12,7 +12,7 @@ HTML code of the application.
 
 CSS and SASS code of the application.
 
-# index.js
+## index.js
 
 Script dedicated to the creation and the functioning of the carousels.
 Four carousels are created from the generic Carousel class.
