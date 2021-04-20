@@ -1,6 +1,6 @@
 # JustStreamIt
 Web application offering an up-to-date selection of movies.
-The database is provided by an API REST executed locally and designed for educational purposes.
+The database is provided by an [API REST](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR) executed locally and designed for educational purposes.
 
 # Folders and files
 
