@@ -41,7 +41,7 @@ function extractMoviesPicturesUrls(sortedCategoryMovies){
 
 /* Function filling a carousel with movies' pictures */
 
-function fillCarousel(sortedCategoryUrls, carousel, carouselCategory){
+function fillCarousel(carousel, carouselCategory, sortedCategoryUrls){
     carousel.category = carouselCategory;
     carousel.pictures = sortedCategoryUrls;
     carousel.fillCategoryMovies(sortedCategoryUrls);
@@ -136,9 +136,10 @@ async function fillCategoryModals(array, category){
 const bestMoviesUrls = ["http://localhost:8000/api/v1/titles/?sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&sort_by=-imdb_score,-votes"];
 const requestsBestMovies = fetchCategoryMovies(bestMoviesUrls);
+let carousel1 = new Carousel();
 requestCategoryMovies(requestsBestMovies).then(function(sortedBestMovies){
 const sortedBestMoviesUrls = extractMoviesPicturesUrls(sortedBestMovies);
-fillCarousel(sortedBestMoviesUrls, carousel1, "best-rated-movies");
+fillCarousel(carousel1, "best-rated-movies", sortedBestMoviesUrls);
 carousel1.fillAllModals(sortedBestMovies);
 carousel1.displayedModals = carousel1.categoryModals[0];
 getBestMovieDetails(sortedBestMovies, sortedBestMoviesUrls);
@@ -149,9 +150,10 @@ fillCategoryModals(carousel1.displayedModals, '#best-rated-movies');})
 const firstCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=animation&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=animation&sort_by=-imdb_score,-votes"];
 const requestsFirstCategory = fetchCategoryMovies(firstCategoryUrls);
+let carousel2 = new Carousel();
 requestCategoryMovies(requestsFirstCategory).then(function(sortedFirstCategory){
 const sortedFirstCategoryUrls = extractMoviesPicturesUrls(sortedFirstCategory);
-fillCarousel(sortedFirstCategoryUrls, carousel2, "first-category");
+fillCarousel(carousel2, "first-category", sortedFirstCategoryUrls);
 carousel2.fillAllModals(sortedFirstCategory);
 carousel2.displayedModals = carousel2.categoryModals[0];
 fillCategoryModals(carousel2.displayedModals, '#first-category');})
@@ -161,9 +163,10 @@ fillCategoryModals(carousel2.displayedModals, '#first-category');})
 const secondCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=drama&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=drama&sort_by=-imdb_score,-votes"];
 const requestsSecondCategory = fetchCategoryMovies(secondCategoryUrls);
+let carousel3 = new Carousel();
 requestCategoryMovies(requestsSecondCategory).then(function(sortedSecondCategory){
 const sortedSecondCategoryUrls = extractMoviesPicturesUrls(sortedSecondCategory);
-fillCarousel(sortedSecondCategoryUrls, carousel3, "second-category");
+fillCarousel(carousel3, "second-category", sortedSecondCategoryUrls);
 carousel3.fillAllModals(sortedSecondCategory);
 carousel3.displayedModals = carousel3.categoryModals[0];
 fillCategoryModals(carousel3.displayedModals, '#second-category');})
@@ -173,9 +176,10 @@ fillCategoryModals(carousel3.displayedModals, '#second-category');})
 const thirdCategoryUrls = ["http://localhost:8000/api/v1/titles/?&genre=fantasy&sort_by=-imdb_score,-votes",
 "http://localhost:8000/api/v1/titles/?page=2&genre=fantasy&sort_by=-imdb_score,-votes"];
 const requestsThirdCategory = fetchCategoryMovies(thirdCategoryUrls);
+let carousel4 = new Carousel();
 requestCategoryMovies(requestsThirdCategory).then(function(sortedThirdCategory){
 const sortedThirdCategoryUrls = extractMoviesPicturesUrls(sortedThirdCategory);
-fillCarousel(sortedThirdCategoryUrls, carousel4, "third-category");
+fillCarousel(carousel4, "third-category", sortedThirdCategoryUrls);
 carousel4.fillAllModals(sortedThirdCategory);
 carousel4.displayedModals = carousel4.categoryModals[0];
 fillCategoryModals(carousel4.displayedModals, '#third-category');})

@@ -63,10 +63,4 @@ class Carousel{
     }
 }
 
-/* Generation of 4 carousels */
-
-let carousel1 = new Carousel();
-let carousel2 = new Carousel();
-let carousel3 = new Carousel();
-let carousel4 = new Carousel();
 
